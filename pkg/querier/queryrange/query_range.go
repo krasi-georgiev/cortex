@@ -82,6 +82,8 @@ type Request interface {
 	proto.Message
 	// LogToSpan writes information about this request to an OpenTracing span
 	LogToSpan(opentracing.Span)
+	// SplitInterval returns the split interval.
+	GetSplitInterval() string
 }
 
 // Response represents a query range response.
@@ -215,6 +217,8 @@ func (prometheusCodec) DecodeRequest(_ context.Context, r *http.Request) (Reques
 			break
 		}
 	}
+
+	result.SplitInterval = r.FormValue("splitInterval")
 
 	return &result, nil
 }

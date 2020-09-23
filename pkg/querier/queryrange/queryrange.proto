@@ -20,6 +20,7 @@ message PrometheusRequest {
   google.protobuf.Duration timeout = 5 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
   string query = 6;
   CachingOptions cachingOptions = 7 [(gogoproto.nullable) = false];
+  string splitInterval = 8;
 }
 
 message PrometheusResponseHeader {
